@@ -5,9 +5,6 @@ class BookSearch:
     def __init__(self, strategy: SearchStrategy):
         self.strategy = strategy
 
-    def set_strategy(self, strategy: SearchStrategy):
-        self.strategy = strategy
-
     def search(self, keyword: str, books: list) -> list:
         return self.strategy.search(keyword, books)
 
@@ -23,8 +20,8 @@ if __name__ == "__main__":
     engine = BookSearch(SearchByTitle())
     print("Cari berdasarkan judul:", engine.search("super", books))
 
-    engine.set_strategy(SearchByAuthor())
+    engine = BookSearch(SearchByAuthor())
     print("Cari berdasarkan penulis:", engine.search("asep", books))
 
-    engine.set_strategy(SearchByCategory())
+    engine = BookSearch(SearchByCategory())
     print("Cari berdasarkan kategori:", engine.search("fi", books))
