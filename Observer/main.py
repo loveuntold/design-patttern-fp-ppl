@@ -1,21 +1,19 @@
-from system import LibrarySystem
-from observer import Pengunjung, Anggota, Pegawai, Admin
+from state_manager import StateManager
 
-def main():
-    system = LibrarySystem()
+def ui_update(user_id, books):
+    print(f"[UI] Update untuk user {user_id}:")
+    for book in books:
+        print(f"- {book['title']}")
 
-    pengunjung = Pengunjung()
-    anggota = Anggota()
-    pegawai = Pegawai()
-    admin = Admin()
+def logger(user_id, books):
+    print(f"[LOG] User {user_id} sekarang meminjam {len(books)} buku")
 
-    system.add_observer(pengunjung)
-    system.add_observer(anggota)
-    system.add_observer(pegawai)
-    system.add_observer(admin)
+state = StateManager()
+state.subscribe(ui_update)
+state.subscribe(logger)
 
-    system.add_book("National Geographic - Supercomputer")
-    system.generate_report("Bulanan Peminjaman")
-
-if __name__ == "__main__":
-    main()
+# Simulasi user meminjam dan mengembalikan buku
+user_id = 1
+state.borrow_book(user_id, {"id": 101, "title": "Python for Beginners"})
+state.borrow_book(user_id, {"id": 102, "title": "Design Patterns"})
+state.return_book(user_id, 101)
