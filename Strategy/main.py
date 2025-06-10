@@ -9,6 +9,7 @@ class BookSearch:
         return self.strategy.search(keyword, books)
 
 if __name__ == "__main__":
+    # Contoh penggunaan
     books = [
         {"judul": "National Geographic - Supercomputer", "penulis": "Leo", "kategori": "Science"},
         {"judul": "Harry Potter", "penulis": "Budi", "kategori": "Fiksi"},
@@ -16,7 +17,6 @@ if __name__ == "__main__":
         {"judul": "Jago Ngoding", "penulis": "Darryl", "kategori": "Tech"},
     ]
 
-    # Contoh penggunaan
     engine = BookSearch(SearchByTitle())
     print("Cari berdasarkan judul:", engine.search("super", books))
 
